@@ -16,29 +16,27 @@ namespace EventManager.Data
         {
             if (!dbContext.Events.Any())
             {
-                dbContext
-                    .Events.Add(new Event
-                    {
+                dbContext.Events.Add(new Event
+                {
                     Name = "Event 1",
                     StartTime = DateTime.Now,
-                    EndTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddHours(2),
                     Location = "Location 1",
                     Description = "Description 1"
                 });
-                dbContext
-                    .Events.Add(new Event
-                    {
-                        Name = "Event 2",
-                        StartTime = DateTime.Now,
-                        EndTime = DateTime.Now,
-                        Location = "Location 2",
-                        Description = "Description 2"
-                    });
-                dbContext.Add(new Event
+                dbContext.Events.Add(new Event
+                {
+                    Name = "Event 2",
+                    StartTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddHours(2),
+                    Location = "Location 2",
+                    Description = "Description 2"
+                });
+                dbContext.Events.Add(new Event
                 {
                     Name = "Event 3",
                     StartTime = DateTime.Now,
-                    EndTime = DateTime.Now,
+                    EndTime = DateTime.Now.AddHours(2),
                     Location = "Location 3",
                     Description = "Description 3"
                 });
