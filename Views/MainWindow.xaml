@@ -8,5 +8,7 @@
         Title="MainWindow" Height="720" Width="1080">
     <Grid>
 
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="True" CanUserAddRows="False" Width="600" Height="370" VerticalAlignment="Top" Margin="240,24,240,0"/>
+
     </Grid>
-</Window>
+</Window>   

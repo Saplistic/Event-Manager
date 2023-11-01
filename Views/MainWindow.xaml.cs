@@ -22,12 +22,18 @@ namespace EventManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        MyDBContext context = new MyDBContext();
+        
         public MainWindow()
         {
-            MyDBContext context = new MyDBContext();
             Initializer.DbSetInitializer(context);
 
             InitializeComponent();
+
+            //dataGrid vullen met events uit database
+            dataGrid.Items.Clear();
+            var events = context.Events.ToList();
+            dataGrid.ItemsSource = events;
         }
     }
 }
