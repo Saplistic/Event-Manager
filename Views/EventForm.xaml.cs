@@ -17,6 +17,7 @@ using EventManager.Model;
 using Administration;
 using EventManager.Data;
 using EventManager.Migrations;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EventManager.Views
 {
@@ -66,25 +67,11 @@ namespace EventManager.Views
 
         private void CreateEvent(object sender, RoutedEventArgs e)
         {
-            // Validatie van de datums & tijden
-            if (!EventStartDatePicker.SelectedDate.HasValue) //TODO: validatie voor alle velden
+            if (!Validate())
             {
-                MessageBox.Show("Please select a date");
-                return;
-            } else if (!EventStartTimePicker.Value.HasValue)
-            {
-                MessageBox.Show("Please select a starting time");
-                return;
-            } else if (!EventEndDatePicker.SelectedDate.HasValue)
-            {
-                MessageBox.Show("Please select an end date");
-                return;
-            } else if (!EventEndTimePicker.Value.HasValue)
-            {
-                MessageBox.Show("Please select an end time");
                 return;
             }
-            
+
             TimeSpan startTime = EventStartTimePicker.Value.Value.TimeOfDay;
             TimeSpan endTime = EventEndTimePicker.Value.Value.TimeOfDay;
 
@@ -111,6 +98,12 @@ namespace EventManager.Views
                 MessageBox.Show("Event to update not found");
                 return;
             }
+
+            if (!Validate())
+            {
+                return;
+            }
+
             TimeSpan startTime = EventStartTimePicker.Value.Value.TimeOfDay;
             TimeSpan endTime = EventEndTimePicker.Value.Value.TimeOfDay;
 
@@ -140,6 +133,70 @@ namespace EventManager.Views
             MainWindow.myDataGrid.ItemsSource = context.Events.ToList(); // Refresh de datagrid
             Close();
             MessageBox.Show("Event succesfully deleted");
+        }
+
+        private bool Validate()
+        {
+            // Validatie voor de invoer:
+            // Naam event
+            if (string.IsNullOrEmpty(EventNameTB.Text))
+            {
+                MessageBox.Show("Please enter a name");
+                return false;
+            }
+            else if (!(EventNameTB.Text.Count() >= 6 && EventNameTB.Text.Count() <= 40))
+            {
+                MessageBox.Show("Name must contain between 6 to 40 characters");
+                return false;
+            }
+            // Locatie event
+            else if (string.IsNullOrEmpty(EventLocationTB.Text))
+            {
+                MessageBox.Show("Please enter a location");
+                return false;
+            }
+            else if (!(EventLocationTB.Text.Count() >= 6 && EventLocationTB.Text.Count() <= 60))
+            {
+                MessageBox.Show("Location must contain between 6 to 60 characters");
+                return false;
+            }
+            // Startdatum
+            else if (!EventStartDatePicker.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Please select a date");
+                return false;
+            }
+            // Starttijd
+            else if (!EventStartTimePicker.Value.HasValue)
+            {
+                MessageBox.Show("Please select a starting time");
+                return false;
+            }
+            // Einddatum
+            else if (!EventEndDatePicker.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Please select an end date");
+                return false;
+            }
+            // Eindtijd
+            else if (!EventEndTimePicker.Value.HasValue)
+            {
+                MessageBox.Show("Please select an end time");
+                return false;
+            }
+            // Kijk of de starttijd voor de eindtijd is
+            else if (!((EventStartDatePicker.SelectedDate.Value + EventStartTimePicker.Value.Value.TimeOfDay) < (EventEndDatePicker.SelectedDate.Value + EventEndTimePicker.Value.Value.TimeOfDay)))
+            {
+                MessageBox.Show("End date + time must be after start date + time");
+                return false;
+            }
+            // Beschrijving
+            else if (!(EventDescriptionTB.Text.Count() <= 600))
+            {
+                MessageBox.Show("Description must container less than 600 characters");
+                return false;
+            }
+            return true;
         }
 
         private void Action_Cancel(object sender, RoutedEventArgs e)
