@@ -8,7 +8,27 @@
         Title="MainWindow" Height="720" Width="1080">
     <Grid>
 
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="True" CanUserAddRows="False" Width="600" Height="370" VerticalAlignment="Top" Margin="240,24,240,0"/>
+        <DataGrid x:Name="EventsDataGrid" Width="600" Height="370" AutoGenerateColumns="False" VerticalAlignment="Top" Margin="240,24,240,0" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Event" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding StartTime}"/>
+                <DataGridTextColumn Header="Ends" Binding="{Binding EndTime}"/>
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit" Click="OpenEventEditForm" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Margin="0,450,0,0" HorizontalAlignment="Center"  VerticalAlignment="Top">
+            <Button Content="Add event" Click="OpenEventAddForm" Width="75" Margin="5, 0"/>
+        </StackPanel>
 
     </Grid>
 </Window>   
