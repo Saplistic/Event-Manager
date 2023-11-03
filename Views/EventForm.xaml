@@ -7,39 +7,39 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="EventForm" Height="481" Width="554"
+        Title="EventForm" Height="480" Width="560"
         ResizeMode="NoResize">
     <Grid>
 
-        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2"><Run Text="Create "/><Run Text="an "/><Run Language="en-be" Text="e"/><Run Text="vent"/></TextBlock>
+        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2" FontWeight="Bold"><Run Text="Create "/><Run Text="an "/><Run Language="en-be" Text="e"/><Run Text="vent"/></TextBlock>
 
         <Label Content="Name" HorizontalAlignment="Left" Margin="20,45,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventNameTB" HorizontalAlignment="Left" Height="23" Margin="20,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="EventNameTB" HorizontalAlignment="Left" Height="23" Margin="20,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="40" Grid.ColumnSpan="2"/>
 
         <Label Content="Location" HorizontalAlignment="Left" Margin="20,105,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventLocationTB" HorizontalAlignment="Left" Height="23" Margin="20,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="EventLocationTB" HorizontalAlignment="Left" Height="23" Margin="20,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="60" Grid.ColumnSpan="2"/>
 
-        <Label Content="Description" HorizontalAlignment="Left" Margin="20,165,0,0" VerticalAlignment="Top" Padding="0" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="EventDescriptionTB" HorizontalAlignment="Left" Height="23" Margin="20,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="20,165,0,0" VerticalAlignment="Top" Padding="0"/>
+        <TextBox x:Name="EventDescriptionTB" HorizontalAlignment="Left" Height="180" Margin="20,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="600" Grid.ColumnSpan="2"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="264,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Starts"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="264,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Ends"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="290,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Starts"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="290,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Ends"/></TextBlock>
 
-        <Label Content="Date" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Padding="0"/>
-        <DatePicker x:Name="EventStartDatePicker" DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" Margin="264,70,0,0" VerticalAlignment="Top" Height="23"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="291,45,0,0" VerticalAlignment="Top" Padding="0"/>
+        <DatePicker x:Name="EventStartDatePicker" DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" Margin="291,70,0,0" VerticalAlignment="Top" Height="23"/>
 
-        <Label Content="Time" HorizontalAlignment="Left" Margin="401,45,0,0" VerticalAlignment="Top" Padding="0"/>
-        <xctk:TimePicker x:Name="EventStartTimePicker" HorizontalAlignment="Left" Margin="401,70,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <Label Content="Time" HorizontalAlignment="Left" Margin="412,45,0,0" VerticalAlignment="Top" Padding="0"/>
+        <xctk:TimePicker x:Name="EventStartTimePicker" HorizontalAlignment="Left" Margin="412,70,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
 
-        <Label Content="Date" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Padding="0"/>
-        <DatePicker x:Name="EventEndDatePicker" DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" Margin="264,164,0,0" VerticalAlignment="Top" Height="23"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="291,139,0,0" VerticalAlignment="Top" Padding="0"/>
+        <DatePicker x:Name="EventEndDatePicker" DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" Margin="291,164,0,0" VerticalAlignment="Top" Height="23"/>
 
-        <Label Content="Time" HorizontalAlignment="Left" Margin="402,139,0,0" VerticalAlignment="Top" Padding="0"/>
-        <xctk:TimePicker x:Name="EventEndTimePicker" HorizontalAlignment="Left" Margin="402,164,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+        <Label Content="Time" HorizontalAlignment="Left" Margin="413,139,0,0" VerticalAlignment="Top" Padding="0"/>
+        <xctk:TimePicker x:Name="EventEndTimePicker" HorizontalAlignment="Left" Margin="413,164,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
 
-        <Button x:Name="DeleteBtn" Visibility="Hidden" Content="Delete Event" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Margin="0,0,466,10" Grid.ColumnSpan="2" Foreground="Red"/>
-        <Button x:Name="SubmitBtn" Content="Create an event" Margin="0,0,10,10"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="118" Grid.Column="1" Height="34"/>
-        <Button x:Name="Cancel" Click="Action_Cancel" Content="Cancel" Margin="0,0,140,10"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="118" Height="34"/>
+        <Button x:Name="DeleteBtn" Content="Delete Event" Margin="20,0,0,10" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Foreground="Red"/>
+        <Button x:Name="SubmitBtn" Content="Create an event" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="118" Grid.Column="1" Height="34"/>
+        <Button x:Name="CancelBtn" Click="Action_Cancel" Content="Cancel" Margin="0,0,140,10"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="118" Height="34" Grid.Column="1"/>
 
     </Grid>
 </Window>
