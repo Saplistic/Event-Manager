@@ -81,7 +81,8 @@ namespace EventManager.Views
                 Location = EventLocationTB.Text,
                 Description = EventDescriptionTB.Text,
                 StartTime = (EventStartDatePicker.SelectedDate.Value + startTime), // Tel de datum en tijd met elkaar op
-                EndTime = (EventEndDatePicker.SelectedDate.Value + endTime)
+                EndTime = (EventEndDatePicker.SelectedDate.Value + endTime),
+                UserId = 1
             };
 
             context.Events.Add(newEvent);
