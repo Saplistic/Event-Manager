@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Administration;
 using EventManager.Data;
 using EventManager.Models;
+using ViewModels;
 
 namespace EventManager.Views.Auth
 {
@@ -42,8 +43,9 @@ namespace EventManager.Views.Auth
                     MessageBox.Show("Invalid credentials");
                     return;
                 }
-                User CurrentUser = context.Users.Where(user => user.EmailAddress == InputEmailAddress && user.Password == InputPassword).FirstOrDefault();
-                MessageBox.Show($"Succesfully logged in as {CurrentUser.FirstName} {CurrentUser.LastName}");
+                UserService.Instance.Login(context.Users.Where(user => user.EmailAddress == InputEmailAddress && user.Password == InputPassword).FirstOrDefault());
+
+                MessageBox.Show($"Succesfully logged in as {UserService.Instance.User.FirstName} {UserService.Instance.User.LastName}");
                 GrantAccess();
             }
         }
