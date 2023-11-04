@@ -68,6 +68,12 @@ namespace EventManager.Views
 
         private void CreateEvent(object sender, RoutedEventArgs e)
         {
+            if (UserService.Instance.User == null)
+            {
+                MessageBox.Show("You have insufficient rights to perform this action");
+                return;
+            }
+
             if (!Validate())
             {
                 return;
@@ -83,7 +89,7 @@ namespace EventManager.Views
                 Description = EventDescriptionTB.Text,
                 StartTime = (EventStartDatePicker.SelectedDate.Value + startTime), // Tel de datum en tijd met elkaar op
                 EndTime = (EventEndDatePicker.SelectedDate.Value + endTime),
-                UserId = 1
+                UserId = UserService.Instance.User.Id
             };
 
             context.Events.Add(newEvent);
@@ -95,6 +101,13 @@ namespace EventManager.Views
 
         private void UpdateEvent(object sender, RoutedEventArgs e)
         {
+
+            if (UserService.Instance.User == null || UserService.Instance.User.Id != selectedEvent.UserId)
+            {
+                MessageBox.Show("You have insufficient rights to perform this action");
+                return;
+            }
+
             if (selectedEvent == null)
             {
                 MessageBox.Show("Event to update not found");
@@ -127,6 +140,12 @@ namespace EventManager.Views
             if (selectedEvent == null)
             {
                 MessageBox.Show("Event to delete not found");
+                return;
+            }
+
+            if (UserService.Instance.User == null || UserService.Instance.User.Id != selectedEvent.UserId)
+            {
+                MessageBox.Show("You have insufficient rights to perform this action");
                 return;
             }
 
