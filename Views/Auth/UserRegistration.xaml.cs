@@ -1,6 +1,6 @@
 ﻿using Administration;
 using EventManager.Data;
-using EventManager.Model;
+using EventManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

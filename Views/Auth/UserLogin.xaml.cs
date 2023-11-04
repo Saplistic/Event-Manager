@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Administration;
 using EventManager.Data;
-using EventManager.Model;
+using EventManager.Models;
 
 namespace EventManager.Views.Auth
 {

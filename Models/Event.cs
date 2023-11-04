@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventManager.Model
+namespace EventManager.Models
 {
     public class Event
     {

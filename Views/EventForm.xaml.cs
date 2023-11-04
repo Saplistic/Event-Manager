@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
-using EventManager.Model;
+using EventManager.Models;
 using Administration;
 using EventManager.Data;
 using EventManager.Migrations;

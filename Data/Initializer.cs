@@ -1,5 +1,5 @@
 ﻿using Administration;
-using EventManager.Model;
+using EventManager.Models;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
