@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Administration;
 using EventManager.Data;
+using EventManager.Model;
 
 namespace EventManager.Views.Auth
 {
@@ -28,7 +29,37 @@ namespace EventManager.Views.Auth
 
         private void Submit(object sender, RoutedEventArgs e)
         {
+            var InputEmailAddress = EmailTB.Text;
+            var InputPassword = PasswordPB.Password;
 
+            using (var context = new MyDBContext())
+            {
+                Initializer.DbSetInitializer(context);
+                bool userfound = context.Users.Any(user => user.EmailAddress == InputEmailAddress && user.Password == InputPassword);
+
+                if (!userfound)
+                {
+                    MessageBox.Show("Invalid credentials");
+                    return;
+                }
+                User CurrentUser = context.Users.Where(user => user.EmailAddress == InputEmailAddress && user.Password == InputPassword).FirstOrDefault();
+                MessageBox.Show($"Succesfully logged in as {CurrentUser.FirstName} {CurrentUser.LastName}");
+                GrantAccess();
+            }
+        }
+
+        public void GrantAccess()
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
+        }
+
+        private void NavigateToRegistration(object sender, RoutedEventArgs e)
+        {
+            UserRegistration userRegistration = new UserRegistration();
+            this.Close();
+            userRegistration.Show();
         }
     }
 }
