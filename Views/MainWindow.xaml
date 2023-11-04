@@ -16,6 +16,8 @@
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding StartTime}"/>
                 <DataGridTextColumn Header="Ends" Binding="{Binding EndTime}"/>
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}"/>
                 <DataGridTemplateColumn Header="Edit">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

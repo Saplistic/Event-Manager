@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EventManager.Models;
 using EventManager.Views;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventManager
 {
@@ -36,8 +37,15 @@ namespace EventManager
 
             InitializeComponent();
 
-            EventsDataGrid.ItemsSource = context.Events.ToList();
+            UpdateDataGrid();
             myDataGrid = EventsDataGrid;
+
+        }
+
+        public void UpdateDataGrid()
+        {
+            var events = context.Events.Include(e => e.User).ToList();
+            EventsDataGrid.ItemsSource = events;
         }
 
         private void OpenEventAddForm(object sender, RoutedEventArgs e)

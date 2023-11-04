@@ -37,5 +37,20 @@ namespace EventManager.Models
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+
+        public string Duration
+        {
+            get
+            {
+                TimeSpan duration = EndTime - StartTime;
+                return duration.ToString(@"hh\:mm");
+                //return duration = EndTime - StartTime;
+            }
+        }
+
+        public string Publisher
+        {
+            get { return User.FirstName + " " + User.LastName; }
+        }
     }
 }
