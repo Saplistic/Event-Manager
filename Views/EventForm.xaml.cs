@@ -17,6 +17,7 @@ using EventManager.Models;
 using Administration;
 using EventManager.Data;
 using EventManager.Migrations;
+using EventManager.Views.Pages;
 using Microsoft.IdentityModel.Tokens;
 using ViewModels;
 
@@ -94,7 +95,8 @@ namespace EventManager.Views
 
             context.Events.Add(newEvent);
             context.SaveChanges();
-            MainWindow.myDataGrid.ItemsSource = context.Events.Include(e => e.User).ToList(); // Update de datagrid
+
+            MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
             Close();
             MessageBox.Show("Event succesfully created " + newEvent.StartTime);
         }
@@ -130,7 +132,7 @@ namespace EventManager.Views
 
             context.Events.Update(selectedEvent);
             context.SaveChanges();
-            MainWindow.myDataGrid.ItemsSource = context.Events.Include(e => e.User).ToList(); // Update de datagrid
+            MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
             Close();
             MessageBox.Show("Event succesfully updated");
         }
@@ -151,7 +153,7 @@ namespace EventManager.Views
 
             context.Events.Remove(selectedEvent);
             context.SaveChanges();
-            MainWindow.myDataGrid.ItemsSource = context.Events.Include(e => e.User).ToList(); // Update de datagrid
+            MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
             Close();
             MessageBox.Show("Event succesfully deleted");
         }
