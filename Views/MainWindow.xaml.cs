@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EventManager.Models;
 using EventManager.Views;
+using EventManager.Views.Pages;
 using Microsoft.EntityFrameworkCore;
 using ViewModels;
 
@@ -35,6 +36,16 @@ namespace EventManager
             // Databinding voor de naam van de ingelogde gebruiker
             UserName = UserService.Instance.User.FirstName + " " + UserService.Instance.User.LastName;
             DataContext = this;
+        }
+
+        private void NavigateToEventsFeed(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new EventsFeed());
+        }
+
+        private void NavigateToMyEvents(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new MyEvents());
         }
     }
 }

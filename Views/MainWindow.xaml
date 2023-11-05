@@ -43,21 +43,21 @@
                             </Style>
                         </StackPanel.Resources>
 
-                        <Button>
+                        <Button Click="NavigateToEventsFeed">
                             <TextBlock Text="Events"/>
                         </Button>
 
-                        <Button>
+                        <!--<Button>
                             <TextBlock Text="Subscriptions"/>
-                        </Button>
+                        </Button>-->
 
-                        <Button>
+                        <Button Click="NavigateToMyEvents">
                             <TextBlock Text="My events"/>
                         </Button>
 
-                        <Button DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                        <!--<Button DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
                             <TextBlock Text="Logout"/>
-                        </Button>
+                        </Button>-->
 
                     </StackPanel>
                 </Border>
@@ -67,7 +67,7 @@
 
         <!--Main content-->
         <Border Grid.Column="1" Grid.Row="1" Padding="50">
-            <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" Source="Pages/MyEvents.xaml"/>
+            <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" Source="Pages/EventsFeed.xaml"/>
         </Border>
 
     </Grid>
