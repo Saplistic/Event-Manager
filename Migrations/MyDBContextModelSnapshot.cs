@@ -22,7 +22,7 @@ namespace EventManager.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EventManager.Model.Event", b =>
+            modelBuilder.Entity("EventManager.Models.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace EventManager.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("EventManager.Model.User", b =>
+            modelBuilder.Entity("EventManager.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,9 +99,9 @@ namespace EventManager.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("EventManager.Model.Event", b =>
+            modelBuilder.Entity("EventManager.Models.Event", b =>
                 {
-                    b.HasOne("EventManager.Model.User", "User")
+                    b.HasOne("EventManager.Models.User", "User")
                         .WithMany("Events")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -110,7 +110,7 @@ namespace EventManager.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("EventManager.Model.User", b =>
+            modelBuilder.Entity("EventManager.Models.User", b =>
                 {
                     b.Navigation("Events");
                 });

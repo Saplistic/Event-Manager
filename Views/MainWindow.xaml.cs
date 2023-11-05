@@ -28,10 +28,12 @@ namespace EventManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        MyDBContext context = new MyDBContext();
         public String UserName { get; set; }
 
         public MainWindow()
         {
+            Initializer.DbSetInitializer(context);
             InitializeComponent();
             // Databinding voor de naam van de ingelogde gebruiker
             UserName = UserService.Instance.User.FirstName + " " + UserService.Instance.User.LastName;

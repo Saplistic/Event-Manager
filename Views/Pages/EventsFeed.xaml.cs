@@ -24,10 +24,10 @@ namespace EventManager.Views.Pages
     public partial class EventsFeed : Page
     {
         MyDBContext context = new MyDBContext();
+
         public EventsFeed()
         {
             InitializeComponent();
-            Initializer.DbSetInitializer(context);
 
             UpdateEventsFeed();
         }

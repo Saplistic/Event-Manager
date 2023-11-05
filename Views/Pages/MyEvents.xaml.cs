@@ -31,9 +31,6 @@ namespace EventManager.Views.Pages
         public MyEvents()
         {
             InitializeComponent();
-            Initializer.DbSetInitializer(context);
-
-            InitializeComponent();
 
             UpdateDataGrid();
             myDataGrid = EventsDataGrid;
