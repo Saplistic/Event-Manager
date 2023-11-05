@@ -7,8 +7,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="EventForm" Height="480" Width="560"
-        ResizeMode="NoResize">
+        Title="EventForm" Height="480" Width="560" Background="WhiteSmoke" ResizeMode="NoResize">
     <Grid>
 
         <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2" FontWeight="Bold"><Run Text="Create "/><Run Text="an "/><Run Language="en-be" Text="e"/><Run Text="vent"/></TextBlock>
