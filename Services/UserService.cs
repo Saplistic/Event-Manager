@@ -1,4 +1,8 @@
-﻿using EventManager.Models;
+﻿using System;
+using System.Linq;
+using System.Windows;
+using Administration;
+using EventManager.Models;
 
 namespace EventManager.Services
 {
@@ -27,9 +31,24 @@ namespace EventManager.Services
             set { user = value; }
         }
 
-        public void Login(User user)
+        public void Login(User requestedUser)
         {
-            this.user = user;
+            //Probeer de meegegeven User in de database te vinden, zodat gecontroleerd kan worden of de User wel degelijk bestaat
+            try
+            {
+                using (var context = new MyDBContext())
+                {
+                    context.Users.Where(u => u.EmailAddress == requestedUser.EmailAddress && u.Password == requestedUser.Password).First();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("User not found");
+                return;
+            }
+
+            this.user = requestedUser;
+            MessageBox.Show($"Succesfully logged in as {Instance.User.FirstName} {Instance.User.LastName}");
         }
 
         public void Logout()

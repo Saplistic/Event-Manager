@@ -43,10 +43,16 @@ namespace EventManager.Views.Auth
                     MessageBox.Show("Invalid credentials");
                     return;
                 }
-                UserService.Instance.Login(context.Users.Where(user => user.EmailAddress == InputEmailAddress && user.Password == InputPassword).FirstOrDefault());
 
-                MessageBox.Show($"Succesfully logged in as {UserService.Instance.User.FirstName} {UserService.Instance.User.LastName}");
-                GrantAccess();
+                User User = context.Users
+                    .Where(user => user.EmailAddress == InputEmailAddress && user.Password == InputPassword)
+                    .FirstOrDefault();
+                UserService.Instance.Login(User);
+
+                if (UserService.Instance.User != null) // Als de UserService een User bevat, dan is de login geslaagd
+                {
+                    GrantAccess();
+                }
             }
         }
 
