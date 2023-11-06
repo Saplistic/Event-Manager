@@ -38,6 +38,8 @@ namespace EventManager.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
 
+        public ICollection<Subscription> Subscriptions { get; set; }
+
         public string Duration
         {
             get
@@ -51,6 +53,11 @@ namespace EventManager.Models
         public string Publisher
         {
             get { return User.FirstName + " " + User.LastName; }
+        }
+
+        public int SubscriptionsCount
+        {
+            get { return Subscriptions.Count; }
         }
     }
 }

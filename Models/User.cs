@@ -37,6 +37,7 @@ namespace EventManager.Models
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
-        public ICollection<Event> Events { get; set; }
+        public ICollection<Event> Events { get; }
+        public ICollection<Subscription> Subscriptions { get; }
     }
 }

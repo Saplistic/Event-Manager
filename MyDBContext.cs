@@ -12,6 +12,7 @@ namespace Administration
     {
         public DbSet<Event> Events { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,5 +23,23 @@ namespace Administration
                 "MultipleActiveResultSets=True;" +
                 "TrustServerCertificate=True;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Subscription>()
+                .HasOne(s => s.User)
+                .WithMany(u => u.Subscriptions)
+                .HasForeignKey(s => s.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Subscription>()
+                .HasOne(s => s.Event)
+                .WithMany(e => e.Subscriptions)
+                .HasForeignKey(s => s.EventId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+        }
+
     }
 }
