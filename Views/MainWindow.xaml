@@ -47,9 +47,9 @@
                             <TextBlock Text="Events"/>
                         </Button>
 
-                        <!--<Button>
+                        <Button Click="NavigateToSubscribedEvents">
                             <TextBlock Text="Subscriptions"/>
-                        </Button>-->
+                        </Button>
 
                         <Button Click="NavigateToMyEvents">
                             <TextBlock Text="My events"/>

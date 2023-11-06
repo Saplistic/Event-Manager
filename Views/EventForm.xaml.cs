@@ -151,8 +151,10 @@ namespace EventManager.Views
                 return;
             }
 
+            context.Subscriptions.RemoveRange(context.Subscriptions.Where(s => s.EventId == selectedEvent.Id));
             context.Events.Remove(selectedEvent);
             context.SaveChanges();
+
             MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
             Close();
             MessageBox.Show("Event succesfully deleted");

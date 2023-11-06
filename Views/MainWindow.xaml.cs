@@ -49,5 +49,10 @@ namespace EventManager
         {
             ContentFrame.Navigate(new MyEvents());
         }
+
+        private void NavigateToSubscribedEvents(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new SubscribedEvents());
+        }
     }
 }
