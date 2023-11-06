@@ -19,7 +19,7 @@ using EventManager.Data;
 using EventManager.Migrations;
 using EventManager.Views.Pages;
 using Microsoft.IdentityModel.Tokens;
-using ViewModels;
+using EventManager.Services;
 
 namespace EventManager.Views
 {

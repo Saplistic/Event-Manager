@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
-using ViewModels;
 using EventManager.Services;
 
 namespace EventManager.Views.Pages

@@ -16,10 +16,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EventManager.Models;
+using EventManager.Services;
 using EventManager.Views;
 using EventManager.Views.Pages;
 using Microsoft.EntityFrameworkCore;
-using ViewModels;
 
 namespace EventManager
 {

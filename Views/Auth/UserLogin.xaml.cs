@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using Administration;
 using EventManager.Data;
 using EventManager.Models;
-using ViewModels;
+using EventManager.Services;
 
 namespace EventManager.Views.Auth
 {
