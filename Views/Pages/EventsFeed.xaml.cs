@@ -28,6 +28,8 @@ namespace EventManager.Views.Pages
     {
         public static ListView eventsListView = new ListView();
         private SubscriptionManager SubscriptionManager = new SubscriptionManager();
+        private string SearchQuery;
+
         MyDBContext context = new MyDBContext();
 
         public EventsFeed()
@@ -40,7 +42,16 @@ namespace EventManager.Views.Pages
 
         public void UpdateEventsFeed()
         {
-            var events = context.Events.Include(e => e.User).Include(e => e.Subscriptions).ToList();
+            var events = new List<Event>();
+            if (string.IsNullOrEmpty(SearchQuery))
+            {
+                events = context.Events.Include(e => e.User).Include(e => e.Subscriptions).ToList();
+            }
+            else
+            {
+                events = context.Events.Include(e => e.User).Include(e => e.Subscriptions).Where(e => e.Name.Contains(SearchQuery)).ToList();
+            }
+            
             EventContainerLV.ItemsSource = events;
         }
 
@@ -56,6 +67,12 @@ namespace EventManager.Views.Pages
             Event selectedEvent = (Event)senderBtn.DataContext;
 
             SubscriptionManager.Subscribe(selectedEvent.Id);
+            UpdateEventsFeed();
+        }
+
+        private void SearchBtnSubmit(object sender, RoutedEventArgs e)
+        {
+            SearchQuery = SearchBarTB.Text;
             UpdateEventsFeed();
         }
     }

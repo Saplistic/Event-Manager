@@ -8,13 +8,29 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EventsFeed">
 
-    <DockPanel>
-        <TextBlock Text="Events" Foreground="Black" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top"
-                   TextAlignment="Center"/>
-        <Button Content="Publish your event" Click="OpenEventAddForm" DockPanel.Dock="Top"
-                HorizontalAlignment="Right" Margin="0 10"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <TextBlock Text="Events" Foreground="Black" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top"
+                   TextAlignment="Left" Margin="0 0 0 30"/>
+
+        <!--Searchbar-->
+        <Grid Grid.Row="1" VerticalAlignment="Center" Margin="0 0 0 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="SearchBarTB" FontSize="18"/>
+            <Button Grid.Column="1" Content="Search" Click="SearchBtnSubmit" FontSize="18" Padding=" 5 0"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
 
             <ListView x:Name="EventContainerLV" Background="WhiteSmoke">
 
@@ -46,5 +62,9 @@
             </ListView>
 
         </ScrollViewer>
-    </DockPanel>
+
+        <Button Grid.Row="3" Content="Publish your event" Margin="0 10 0 0" Padding="10 0" Click="OpenEventAddForm"
+                HorizontalAlignment="Right" FontSize="16"/>
+
+    </Grid>
 </Page>
