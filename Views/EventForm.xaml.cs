@@ -14,12 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using EventManager.Models;
+using EventManager.Services;
 using Administration;
 using EventManager.Data;
 using EventManager.Migrations;
+using EventManager.Models.RequestModels;
 using EventManager.Views.Pages;
 using Microsoft.IdentityModel.Tokens;
 using EventManager.Services;
+using Xceed.Wpf.Toolkit;
+using MessageBox = System.Windows.MessageBox;
 
 namespace EventManager.Views
 {
@@ -28,205 +32,108 @@ namespace EventManager.Views
     /// </summary>
     public partial class EventForm : Window
     {
-        MyDBContext context = new MyDBContext();
-        public Event selectedEvent { get; set; }
+        private Services.EventManager EventManager = new();
+        private int eventId;
+        private Event eventToUpdate;
 
-        // Constructor gebruikt om events aan te maken (Add)
         public EventForm()
         {
-            Initializer.DbSetInitializer(context);
             InitializeComponent();
 
-            SubmitBtn.Click += CreateEvent; // Create methode aan de submit knop koppelen
+            SubmitBtn.Click += SubmitAddEvent; // Create methode aan de submit knop koppelen
         }
 
-        // Constructor gebruikt om events te updaten (Edit)
-        public EventForm(int selectedEventId)
+        public EventForm(int eventId)
         {
-            Initializer.DbSetInitializer(context);
-            InitializeComponent();
+            this.eventId = eventId;
 
-            selectedEvent = context.Events.Find(selectedEventId);
+            using (var context = new MyDBContext())
+            {
+                this.eventToUpdate = context.Events.Where(e => e.Id == eventId).FirstOrDefault();
+                DataContext = eventToUpdate;
+            }
+            InitializeComponent();
 
             Title.Text = "Edit an event";
             SubmitBtn.Content = "Update";
 
-            // Vul de velden met de gegevens van de geselecteerde event
-            EventNameTB.Text = selectedEvent.Name;
-            EventLocationTB.Text = selectedEvent.Location;
-            EventDescriptionTB.Text = selectedEvent.Description;
-            EventStartDatePicker.SelectedDate = selectedEvent.StartTime;
-            EventStartTimePicker.Value = selectedEvent.StartTime;
-            EventEndDatePicker.SelectedDate = selectedEvent.EndTime;
-            EventEndTimePicker.Value = selectedEvent.EndTime;
-
             DeleteBtn.Visibility = Visibility.Visible; // Delete knop zichtbaar maken
 
-            DeleteBtn.Click += DeleteEvent; // Delete methode aan de delete knop koppelen
-            SubmitBtn.Click += UpdateEvent; // Update methode aan de submit knop koppelen
-        }
+            // Vul de velden met datum  
+            EventStartDatePicker.SelectedDate = eventToUpdate.StartTime;
+            EventStartTimePicker.Value = eventToUpdate.StartTime;
+            EventEndDatePicker.SelectedDate = eventToUpdate.EndTime;
+            EventEndTimePicker.Value = eventToUpdate.EndTime;
 
-
-        private void CreateEvent(object sender, RoutedEventArgs e)
-        {
-            if (UserService.Instance.User == null)
-            {
-                MessageBox.Show("You have insufficient rights to perform this action");
-                return;
-            }
-
-            if (!Validate())
-            {
-                return;
-            }
-
-            TimeSpan startTime = EventStartTimePicker.Value.Value.TimeOfDay;
-            TimeSpan endTime = EventEndTimePicker.Value.Value.TimeOfDay;
-
-            Event newEvent = new Event()
-            {
-                Name = EventNameTB.Text,
-                Location = EventLocationTB.Text,
-                Description = EventDescriptionTB.Text,
-                StartTime = (EventStartDatePicker.SelectedDate.Value + startTime), // Tel de datum en tijd met elkaar op
-                EndTime = (EventEndDatePicker.SelectedDate.Value + endTime),
-                UserId = UserService.Instance.User.Id
-            };
-
-            context.Events.Add(newEvent);
-            context.SaveChanges();
-
-            MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
-            Close();
-            MessageBox.Show("Event succesfully created " + newEvent.StartTime);
-        }
-
-        private void UpdateEvent(object sender, RoutedEventArgs e)
-        {
-
-            if (UserService.Instance.User == null || UserService.Instance.User.Id != selectedEvent.UserId)
-            {
-                MessageBox.Show("You have insufficient rights to perform this action");
-                return;
-            }
-
-            if (selectedEvent == null)
-            {
-                MessageBox.Show("Event to update not found");
-                return;
-            }
-
-            if (!Validate())
-            {
-                return;
-            }
-
-            TimeSpan startTime = EventStartTimePicker.Value.Value.TimeOfDay;
-            TimeSpan endTime = EventEndTimePicker.Value.Value.TimeOfDay;
-
-            selectedEvent.Name = EventNameTB.Text;
-            selectedEvent.Location = EventLocationTB.Text;
-            selectedEvent.Description = EventDescriptionTB.Text;
-            selectedEvent.StartTime = (EventStartDatePicker.SelectedDate.Value + startTime);
-            selectedEvent.EndTime = (EventEndDatePicker.SelectedDate.Value + endTime);
-
-            context.Events.Update(selectedEvent);
-            context.SaveChanges();
-            MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
-            Close();
-            MessageBox.Show("Event succesfully updated");
-        }
-
-        private void DeleteEvent(object sender, RoutedEventArgs e)
-        {
-            if (selectedEvent == null)
-            {
-                MessageBox.Show("Event to delete not found");
-                return;
-            }
-
-            if (UserService.Instance.User == null || UserService.Instance.User.Id != selectedEvent.UserId)
-            {
-                MessageBox.Show("You have insufficient rights to perform this action");
-                return;
-            }
-
-            context.Subscriptions.RemoveRange(context.Subscriptions.Where(s => s.EventId == selectedEvent.Id));
-            context.Events.Remove(selectedEvent);
-            context.SaveChanges();
-
-            MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
-            Close();
-            MessageBox.Show("Event succesfully deleted");
-        }
-
-        private bool Validate()
-        {
-            // Validatie voor de invoer:
-            // Naam event
-            if (string.IsNullOrEmpty(EventNameTB.Text))
-            {
-                MessageBox.Show("Please enter a name");
-                return false;
-            }
-            else if (!(EventNameTB.Text.Count() >= 6 && EventNameTB.Text.Count() <= 40))
-            {
-                MessageBox.Show("Name must contain between 6 to 40 characters");
-                return false;
-            }
-            // Locatie event
-            else if (string.IsNullOrEmpty(EventLocationTB.Text))
-            {
-                MessageBox.Show("Please enter a location");
-                return false;
-            }
-            else if (!(EventLocationTB.Text.Count() >= 6 && EventLocationTB.Text.Count() <= 60))
-            {
-                MessageBox.Show("Location must contain between 6 to 60 characters");
-                return false;
-            }
-            // Startdatum
-            else if (!EventStartDatePicker.SelectedDate.HasValue)
-            {
-                MessageBox.Show("Please select a date");
-                return false;
-            }
-            // Starttijd
-            else if (!EventStartTimePicker.Value.HasValue)
-            {
-                MessageBox.Show("Please select a starting time");
-                return false;
-            }
-            // Einddatum
-            else if (!EventEndDatePicker.SelectedDate.HasValue)
-            {
-                MessageBox.Show("Please select an end date");
-                return false;
-            }
-            // Eindtijd
-            else if (!EventEndTimePicker.Value.HasValue)
-            {
-                MessageBox.Show("Please select an end time");
-                return false;
-            }
-            // Kijk of de starttijd voor de eindtijd is
-            else if (!((EventStartDatePicker.SelectedDate.Value + EventStartTimePicker.Value.Value.TimeOfDay) < (EventEndDatePicker.SelectedDate.Value + EventEndTimePicker.Value.Value.TimeOfDay)))
-            {
-                MessageBox.Show("End date + time must be after start date + time");
-                return false;
-            }
-            // Beschrijving
-            else if (!(EventDescriptionTB.Text.Count() <= 600))
-            {
-                MessageBox.Show("Description must container less than 600 characters");
-                return false;
-            }
-            return true;
+            // Delete & Update methode aan de knoppen koppelen
+            DeleteBtn.Click += SubmitDeleteEvent;
+            SubmitBtn.Click += SumbitUpdateEvent;
         }
 
         private void Action_Cancel(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void SubmitAddEvent(object sender, RoutedEventArgs e)
+        {
+            EventRequest eventRequest = new EventRequest()
+            {
+                Name = EventNameTB.Text,
+                Location = EventLocationTB.Text,
+                Description = EventDescriptionTB.Text,
+                StartDate = EventStartDatePicker.SelectedDate,
+                StartTime = EventStartTimePicker.Value.HasValue ? (TimeSpan?)EventStartTimePicker.Value.Value.TimeOfDay : null, // Converteer een nullable datetime naar een nullable timespan
+                EndDate = EventEndDatePicker.SelectedDate,
+                EndTime = EventEndTimePicker.Value.HasValue ? (TimeSpan?)EventEndTimePicker.Value.Value.TimeOfDay : null
+            };
+
+            if (EventManager.Create(eventRequest))
+            {
+                Close();
+                using (var context = new MyDBContext())
+                {
+                    MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
+                }
+                MessageBox.Show("Event succesfully created");
+            }
+        }
+
+        private void SumbitUpdateEvent(object sender, RoutedEventArgs e)
+        {
+            EventRequest eventRequest = new EventRequest()
+            {
+                Name = eventToUpdate.Name,
+                Location = eventToUpdate.Location,
+                Description = eventToUpdate.Description,
+                StartDate = EventStartDatePicker.SelectedDate,
+                StartTime = EventStartTimePicker.Value.HasValue ? (TimeSpan?)EventStartTimePicker.Value.Value.TimeOfDay : null, // Converteer een nullable datetime naar een nullable timespan
+                EndDate = EventEndDatePicker.SelectedDate,
+                EndTime = EventEndTimePicker.Value.HasValue ? (TimeSpan?)EventEndTimePicker.Value.Value.TimeOfDay : null
+            };
+
+            if (EventManager.Update(eventRequest, eventId))
+            {
+                Close();
+                using (var context = new MyDBContext())
+                {
+                    MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
+                }
+                MessageBox.Show("Event succesfully updated");
+            }
+        }
+
+        private void SubmitDeleteEvent(object sender, RoutedEventArgs e)
+        {
+            if (EventManager.Delete(eventId))
+            {
+                Close();
+                using (var context = new MyDBContext())
+                {
+                    MyEvents.myDataGrid.ItemsSource = context.Events.Where(e => e.UserId == UserService.Instance.User.Id).ToList(); // Update de datagrid
+                }
+                MessageBox.Show("Event succesfully deleted");
+            }
         }
     }
 }

@@ -13,13 +13,13 @@
         <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2" FontWeight="Bold"><Run Text="Create "/><Run Text="an "/><Run Language="en-be" Text="e"/><Run Text="vent"/></TextBlock>
 
         <Label Content="Name" HorizontalAlignment="Left" Margin="20,45,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventNameTB" HorizontalAlignment="Left" Height="23" Margin="20,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="40" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="EventNameTB" Text="{Binding Name}" HorizontalAlignment="Left" Height="23" Margin="20,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="40" Grid.ColumnSpan="2"/>
 
         <Label Content="Location" HorizontalAlignment="Left" Margin="20,105,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventLocationTB" HorizontalAlignment="Left" Height="23" Margin="20,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="60" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="EventLocationTB" Text="{Binding Location}" HorizontalAlignment="Left" Height="23" Margin="20,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="60" Grid.ColumnSpan="2"/>
 
         <Label Content="Description" HorizontalAlignment="Left" Margin="20,165,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventDescriptionTB" HorizontalAlignment="Left" Height="180" Margin="20,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="600" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="EventDescriptionTB" Text="{Binding Description}" HorizontalAlignment="Left" Height="180" Margin="20,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="600" Grid.ColumnSpan="2"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="290,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Starts"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="290,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Ends"/></TextBlock>
