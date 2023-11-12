@@ -54,16 +54,16 @@ namespace EventManager.Views
             }
             InitializeComponent();
 
-            Title.Text = "Edit an event";
+            TitleTBl.Text = "Edit an event";
             SubmitBtn.Content = "Update";
 
             DeleteBtn.Visibility = Visibility.Visible; // Delete knop zichtbaar maken
 
             // Vul de velden met datum  
-            EventStartDatePicker.SelectedDate = eventToUpdate.StartTime;
-            EventStartTimePicker.Value = eventToUpdate.StartTime;
-            EventEndDatePicker.SelectedDate = eventToUpdate.EndTime;
-            EventEndTimePicker.Value = eventToUpdate.EndTime;
+            StartDateDP.SelectedDate = eventToUpdate.StartTime;
+            StartTimeTP.Value = eventToUpdate.StartTime;
+            EndDateDP.SelectedDate = eventToUpdate.EndTime;
+            EndTimeTP.Value = eventToUpdate.EndTime;
 
             // Delete & Update methode aan de knoppen koppelen
             DeleteBtn.Click += SubmitDeleteEvent;
@@ -79,13 +79,13 @@ namespace EventManager.Views
         {
             EventRequest eventRequest = new EventRequest()
             {
-                Name = EventNameTB.Text,
-                Location = EventLocationTB.Text,
-                Description = EventDescriptionTB.Text,
-                StartDate = EventStartDatePicker.SelectedDate,
-                StartTime = EventStartTimePicker.Value.HasValue ? (TimeSpan?)EventStartTimePicker.Value.Value.TimeOfDay : null, // Converteer een nullable datetime naar een nullable timespan
-                EndDate = EventEndDatePicker.SelectedDate,
-                EndTime = EventEndTimePicker.Value.HasValue ? (TimeSpan?)EventEndTimePicker.Value.Value.TimeOfDay : null
+                Name = NameTB.Text,
+                Location = LocationTB.Text,
+                Description = DescriptionTB.Text,
+                StartDate = StartDateDP.SelectedDate,
+                StartTime = StartTimeTP.Value.HasValue ? (TimeSpan?)StartTimeTP.Value.Value.TimeOfDay : null, // Converteer een nullable datetime naar een nullable timespan
+                EndDate = EndDateDP.SelectedDate,
+                EndTime = EndTimeTP.Value.HasValue ? (TimeSpan?)EndTimeTP.Value.Value.TimeOfDay : null
             };
 
             if (EventManager.Create(eventRequest))
@@ -106,10 +106,10 @@ namespace EventManager.Views
                 Name = eventToUpdate.Name,
                 Location = eventToUpdate.Location,
                 Description = eventToUpdate.Description,
-                StartDate = EventStartDatePicker.SelectedDate,
-                StartTime = EventStartTimePicker.Value.HasValue ? (TimeSpan?)EventStartTimePicker.Value.Value.TimeOfDay : null, // Converteer een nullable datetime naar een nullable timespan
-                EndDate = EventEndDatePicker.SelectedDate,
-                EndTime = EventEndTimePicker.Value.HasValue ? (TimeSpan?)EventEndTimePicker.Value.Value.TimeOfDay : null
+                StartDate = StartDateDP.SelectedDate,
+                StartTime = StartTimeTP.Value.HasValue ? (TimeSpan?)StartTimeTP.Value.Value.TimeOfDay : null, // Converteer een nullable datetime naar een nullable timespan
+                EndDate = EndDateDP.SelectedDate,
+                EndTime = EndTimeTP.Value.HasValue ? (TimeSpan?)EndTimeTP.Value.Value.TimeOfDay : null
             };
 
             if (EventManager.Update(eventRequest, eventId))

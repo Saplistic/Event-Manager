@@ -8,37 +8,128 @@
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="EventForm" Height="480" Width="560" Background="WhiteSmoke" ResizeMode="NoResize">
-    <Grid>
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="0 5 "/>
+        </Style>
 
-        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2" FontWeight="Bold"><Run Text="Create "/><Run Text="an "/><Run Language="en-be" Text="e"/><Run Text="vent"/></TextBlock>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="24"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="Height" Value="24"/>
+        </Style>
+        <Style TargetType="xctk:TimePicker">
+            <Setter Property="Height" Value="24"/>
+        </Style>
+    </Window.Resources>
 
-        <Label Content="Name" HorizontalAlignment="Left" Margin="20,45,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventNameTB" Text="{Binding Name}" HorizontalAlignment="Left" Height="23" Margin="20,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="40" Grid.ColumnSpan="2"/>
+    <Border Padding="20">
 
-        <Label Content="Location" HorizontalAlignment="Left" Margin="20,105,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventLocationTB" Text="{Binding Location}" HorizontalAlignment="Left" Height="23" Margin="20,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="60" Grid.ColumnSpan="2"/>
 
-        <Label Content="Description" HorizontalAlignment="Left" Margin="20,165,0,0" VerticalAlignment="Top" Padding="0"/>
-        <TextBox x:Name="EventDescriptionTB" Text="{Binding Description}" HorizontalAlignment="Left" Height="180" Margin="20,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" MaxLength="600" Grid.ColumnSpan="2"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Left" Margin="290,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Starts"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="290,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"><Run Language="en-be" Text="Ends"/></TextBlock>
+            <TextBlock x:Name="TitleTBl" Text="Create an event" FontSize="20" FontWeight="Bold"
+                       Grid.ColumnSpan="2"/>
 
-        <Label Content="Date" HorizontalAlignment="Left" Margin="291,45,0,0" VerticalAlignment="Top" Padding="0"/>
-        <DatePicker x:Name="EventStartDatePicker" DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" Margin="291,70,0,0" VerticalAlignment="Top" Height="23"/>
+            <StackPanel Margin="0 0 15 0"
+                        Grid.Row="1">
 
-        <Label Content="Time" HorizontalAlignment="Left" Margin="412,45,0,0" VerticalAlignment="Top" Padding="0"/>
-        <xctk:TimePicker x:Name="EventStartTimePicker" HorizontalAlignment="Left" Margin="412,70,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+                <Label Content="Name"/>
+                <TextBox x:Name="NameTB" Text="{Binding Name}" MaxLength="60"/>
 
-        <Label Content="Date" HorizontalAlignment="Left" Margin="291,139,0,0" VerticalAlignment="Top" Padding="0"/>
-        <DatePicker x:Name="EventEndDatePicker" DisplayDateStart="{x:Static sys:DateTime.Today}" HorizontalAlignment="Left" Margin="291,164,0,0" VerticalAlignment="Top" Height="23"/>
+                <Label Content="Location"/>
+                <TextBox x:Name="LocationTB" Text="{Binding Location}" MaxLength="60"/>
 
-        <Label Content="Time" HorizontalAlignment="Left" Margin="413,139,0,0" VerticalAlignment="Top" Padding="0"/>
-        <xctk:TimePicker x:Name="EventEndTimePicker" HorizontalAlignment="Left" Margin="413,164,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+            </StackPanel>
 
-        <Button x:Name="DeleteBtn" Content="Delete Event" Margin="20,0,0,10" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Foreground="Red"/>
-        <Button x:Name="SubmitBtn" Content="Create an event" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="118" Grid.Column="1" Height="34"/>
-        <Button x:Name="CancelBtn" Click="Action_Cancel" Content="Cancel" Margin="0,0,140,10"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="118" Height="34" Grid.Column="1"/>
+            <StackPanel Grid.Row="1" Margin="15 0 0 0"
+                        Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-    </Grid>
+                    <TextBlock Text="Starts" FontSize="16"/>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Margin="0 0 8 0">
+                            <Label Content="Date"/>
+                            <DatePicker x:Name="StartDateDP" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"  Margin="8 0 0 0">
+                            <Label Content="Time"/>
+                            <xctk:TimePicker x:Name="StartTimeTP"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Ends" FontSize="16"/>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Margin="0 0 8 0">
+                            <Label Content="Date"/>
+                            <DatePicker x:Name="EndDateDP" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"  Margin="8 0 0 0">
+                            <Label Content="Time"/>
+                            <xctk:TimePicker x:Name="EndTimeTP"/>
+                        </StackPanel>
+
+                    </Grid>
+
+                </Grid>
+            </StackPanel>
+
+            <Grid Margin="0 10 0 20"
+                  Grid.Row="2" Grid.ColumnSpan="2" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Description"/>
+                <TextBox x:Name="DescriptionTB" Text="{Binding Description}" MaxLength="600" Grid.Row="1" Height="Auto"/>
+            </Grid>
+
+            <DockPanel LastChildFill="False"
+                       Grid.Row="3" Grid.ColumnSpan="2">
+
+                <Button x:Name="SubmitBtn" Content="Create an event" Width="118" Height="30" DockPanel.Dock="Right" Margin="20 0 0 0"/>
+                <Button x:Name="CancelBtn" Content="Cancel" Click="Action_Cancel" Width="118" Height="30" DockPanel.Dock="Right"/>
+                <Button x:Name="DeleteBtn" Content="Delete Event" Width="75" Height="20" VerticalAlignment="Bottom" Foreground="Red" Visibility="Hidden"/>
+
+            </DockPanel>
+
+        </Grid>
+    </Border>
 </Window>
