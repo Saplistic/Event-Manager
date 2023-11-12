@@ -125,7 +125,7 @@
                        Grid.Row="3" Grid.ColumnSpan="2">
 
                 <Button x:Name="SubmitBtn" Content="Create an event" Width="118" Height="30" DockPanel.Dock="Right" Margin="20 0 0 0"/>
-                <Button x:Name="CancelBtn" Content="Cancel" Click="Action_Cancel" Width="118" Height="30" DockPanel.Dock="Right"/>
+                <Button x:Name="CancelBtn" Content="Cancel" Click="ExitWindow" Width="118" Height="30" DockPanel.Dock="Right"/>
                 <Button x:Name="DeleteBtn" Content="Delete Event" Width="75" Height="20" VerticalAlignment="Bottom" Foreground="Red" Visibility="Hidden"/>
 
             </DockPanel>

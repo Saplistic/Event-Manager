@@ -67,10 +67,10 @@ namespace EventManager.Views
 
             // Delete & Update methode aan de knoppen koppelen
             DeleteBtn.Click += SubmitDeleteEvent;
-            SubmitBtn.Click += SumbitUpdateEvent;
+            SubmitBtn.Click += SubmitUpdateEvent;
         }
 
-        private void Action_Cancel(object sender, RoutedEventArgs e)
+        private void ExitWindow(object sender, RoutedEventArgs e)
         {
             Close();
         }
@@ -99,13 +99,13 @@ namespace EventManager.Views
             }
         }
 
-        private void SumbitUpdateEvent(object sender, RoutedEventArgs e)
+        private void SubmitUpdateEvent(object sender, RoutedEventArgs e)
         {
             EventRequest eventRequest = new EventRequest()
             {
-                Name = eventToUpdate.Name,
-                Location = eventToUpdate.Location,
-                Description = eventToUpdate.Description,
+                Name = NameTB.Text,
+                Location = LocationTB.Text,
+                Description = DescriptionTB.Text,
                 StartDate = StartDateDP.SelectedDate,
                 StartTime = StartTimeTP.Value.HasValue ? (TimeSpan?)StartTimeTP.Value.Value.TimeOfDay : null, // Converteer een nullable datetime naar een nullable timespan
                 EndDate = EndDateDP.SelectedDate,
