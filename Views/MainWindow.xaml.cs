@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using EventManager.Models;
 using EventManager.Services;
 using EventManager.Views;
+using EventManager.Views.Auth;
 using EventManager.Views.Pages;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,6 +54,15 @@ namespace EventManager
         private void NavigateToSubscribedEvents(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(new SubscribedEvents());
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            UserService.Instance.Logout();
+
+            UserLogin userLogin = new UserLogin();
+            this.Close();
+            userLogin.Show();
         }
     }
 }
