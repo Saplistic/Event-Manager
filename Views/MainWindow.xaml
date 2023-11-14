@@ -57,6 +57,19 @@
                             </Button>
                         </StackPanel>
 
+                        <Separator DockPanel.Dock="Top"
+                                   Margin="0 20"
+                                   Background="#99F5F5F5"/>
+
+                        <TextBlock Text="Admin menu" DockPanel.Dock="Top" Foreground="#FFD7E7" FontSize="14" FontWeight="SemiBold" Margin="15 0 0 0"/>
+
+                        <StackPanel DockPanel.Dock="Top">
+                            <Button Click="NavigateToManageEvents">
+                                <TextBlock Text="Manage events"/>
+                            </Button>
+
+                        </StackPanel>
+
                         <Button Click="Logout" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
                             <TextBlock Text="Logout"/>
                         </Button>
