@@ -61,6 +61,11 @@ namespace EventManager
             ContentFrame.Navigate(new ManageEvents());
         }
 
+        private void NavigateToManageUsers(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(new ManageUsers());
+        }
+
         private void Logout(object sender, RoutedEventArgs e)
         {
             UserService.Instance.Logout();

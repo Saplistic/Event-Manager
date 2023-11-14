@@ -68,6 +68,9 @@
                                 <TextBlock Text="Manage events"/>
                             </Button>
 
+                            <Button Click="NavigateToManageUsers">
+                                <TextBlock Text="Manage users"/>
+                            </Button>
                         </StackPanel>
 
                         <Button Click="Logout" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
