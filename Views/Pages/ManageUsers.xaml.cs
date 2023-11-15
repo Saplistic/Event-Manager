@@ -41,7 +41,8 @@ namespace EventManager.Views.Pages
 
         private void OpenUserAddForm(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            UserForm userForm = new UserForm();
+            userForm.ShowDialog();
         }
 
         private void OpenUserEditForm(object sender, RoutedEventArgs e)

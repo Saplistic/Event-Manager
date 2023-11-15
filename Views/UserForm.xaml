@@ -1,0 +1,67 @@
+﻿<Window x:Class="EventManager.Views.UserForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventManager.Views"
+        mc:Ignorable="d"
+      Title="UserForm" Height="550" Width="450">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="0 5 "/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
+    <Border Grid.Row="2" Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="TitleTBl" Text="Create a user" FontSize="20" Margin="0 0 0 10" FontWeight="Bold"/>
+
+            <Separator Grid.Row="1"/>
+
+            <StackPanel Grid.Row="2">
+
+                <Label Content="First Name"/>
+                <TextBox x:Name="FirstName" MaxLength="40"/>
+                <Label Content="Last Name"/>
+
+                <TextBox x:Name="LastName" MaxLength="40"/>
+
+                <Label Content="Email"/>
+                <TextBox x:Name="Email" MaxLength="50"/>
+
+                <Label Content="Password"/>
+                <PasswordBox x:Name="Password" MaxLength="40"/>
+
+                <Label Content="Confirm Password"/>
+                <PasswordBox x:Name="ConfirmPassword" MaxLength="40"/>
+
+                <Label>
+                    <TextBlock>
+                          <Run Text="Phone number"/>
+                          <Run Text="(Optional)" FontStyle="Italic"/>
+                    </TextBlock>
+                </Label>
+                <TextBox x:Name="PhoneNumber"  MaxLength="16"/>
+
+                <DockPanel Margin="0 45 0 0" LastChildFill="False">
+                    <Button x:Name="SubmitBtn" Content="Create user" DockPanel.Dock="Right" Width="100" Height="30"/>
+                    <Button x:Name="DeleteBtn" Content="Delete user" Foreground="Red" Width="100" Height="20"/>
+                </DockPanel>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>
