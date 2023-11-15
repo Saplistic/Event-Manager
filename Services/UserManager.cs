@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using EventManager.Models.RequestModels;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EventManager.Services
 {
@@ -54,12 +55,19 @@ namespace EventManager.Services
 
             using (var context = new MyDBContext())
             {
-                User selectedUser = context.Users.Find(UserService.Instance.User.Id);
+                User selectedUser = context.Users.Find(userId);
 
                 if (selectedUser == null)
                 {
                     MessageBox.Show("User to update not found");
                     return false;
+                }
+
+                if (string.IsNullOrEmpty(userRequest.Password) && string.IsNullOrEmpty(userRequest.ConfirmPassword)) // Laat de wachtwoorden ongewijzigd als ze leeg zijn
+                {
+                    userRequest.Password = selectedUser.Password;
+                    userRequest.ConfirmPassword = selectedUser.Password;
+                    MessageBox.Show("Password unchanged");
                 }
 
                 if (!Validate(userRequest))

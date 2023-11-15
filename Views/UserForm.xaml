@@ -33,18 +33,23 @@
             <StackPanel Grid.Row="2">
 
                 <Label Content="First Name"/>
-                <TextBox x:Name="FirstName" MaxLength="40"/>
+                <TextBox x:Name="FirstName" Text="{Binding FirstName}" MaxLength="40"/>
                 <Label Content="Last Name"/>
 
-                <TextBox x:Name="LastName" MaxLength="40"/>
+                <TextBox x:Name="LastName" Text="{Binding LastName}" MaxLength="40"/>
 
                 <Label Content="Email"/>
-                <TextBox x:Name="Email" MaxLength="50"/>
+                <TextBox x:Name="Email" Text="{Binding EmailAddress}" MaxLength="50"/>
 
-                <Label Content="Password"/>
+                <Label>
+                    <TextBlock>
+                        <Run Text="New password"/>
+                        <Run Text="(Optional)" FontStyle="Italic"/>
+                    </TextBlock>
+                </Label>
                 <PasswordBox x:Name="Password" MaxLength="40"/>
 
-                <Label Content="Confirm Password"/>
+                <Label Content="Confirm new password"/>
                 <PasswordBox x:Name="ConfirmPassword" MaxLength="40"/>
 
                 <Label>
@@ -53,11 +58,12 @@
                           <Run Text="(Optional)" FontStyle="Italic"/>
                     </TextBlock>
                 </Label>
-                <TextBox x:Name="PhoneNumber"  MaxLength="16"/>
+                <TextBox x:Name="PhoneNumber" Text="{Binding PhoneNumber}" MaxLength="16"/>
 
                 <DockPanel Margin="0 45 0 0" LastChildFill="False">
-                    <Button x:Name="SubmitBtn" Content="Create user" DockPanel.Dock="Right" Width="100" Height="30"/>
-                    <Button x:Name="DeleteBtn" Content="Delete user" Foreground="Red" Width="100" Height="20"/>
+                    <Button x:Name="SubmitBtn" Content="Create user" DockPanel.Dock="Right" Width="100" Height="30" Margin="20 0 0 0"/>
+                    <Button x:Name="CancelBtn" Content="Cancel" Click="ExitWindow" DockPanel.Dock="Right" Width="100" Height="30"/>
+                    <Button x:Name="DeleteBtn" Content="Delete user" Foreground="Red" Width="100" Height="20" Visibility="Hidden"/>
                 </DockPanel>
 
             </StackPanel>

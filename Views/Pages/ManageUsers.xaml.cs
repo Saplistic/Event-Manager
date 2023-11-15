@@ -1,5 +1,6 @@
 ﻿using Administration;
 using EventManager.Services;
+using EventManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,9 @@ namespace EventManager.Views.Pages
 
         private void OpenUserEditForm(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            User selectedUser = (User)UsersDataGrid.SelectedItem;
+            UserForm userForm = new UserForm(selectedUser.Id);
+            userForm.ShowDialog();
         }
     }
 }
