@@ -4,9 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EventManager.Views.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="EventsFeed">
+      mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800" Title="EventsFeed">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,23 +14,40 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Events" Foreground="Black" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top"
-                   TextAlignment="Left" Margin="0 0 0 30"/>
+        <TextBlock Text="Events" 
+                   DockPanel.Dock="Top"
+                   TextAlignment="Left" 
+                   Margin="0 0 0 30"
+                   FontSize="22"
+                   FontWeight="SemiBold"
+                   Foreground="Black"/>
 
         <!--Searchbar-->
-        <Grid Grid.Row="1" VerticalAlignment="Center" Margin="0 0 0 20">
+        <Grid Grid.Row="1"
+              VerticalAlignment="Center" 
+              Margin="0 0 0 20">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="SearchBarTB" FontSize="18"/>
-            <Button Grid.Column="1" Content="Search" Click="SearchBtnSubmit" FontSize="18" Padding=" 5 0"/>
+            <TextBox x:Name="SearchBarTB" 
+                     FontSize="18"/>
+
+            <Button Grid.Column="1" 
+                    Content="Search"
+                    Click="SearchBtnSubmit" 
+                    Padding=" 5 0"
+                    FontSize="18"/>
         </Grid>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+        <ScrollViewer Grid.Row="2" 
+                      DockPanel.Dock="Top"
+                      VerticalScrollBarVisibility="Auto">
 
-            <ListView x:Name="EventContainerLV" Background="WhiteSmoke">
+            <ListView x:Name="EventContainerLV" 
+                      Background="WhiteSmoke">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -43,15 +58,33 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
 
-                        <Border BorderBrush="DarkGray" Background="White" BorderThickness="1" Margin=" 5" CornerRadius="6" Padding="10">
+                        <Border Padding="10"
+                                Margin=" 5"
+                                BorderThickness="1" 
+                                BorderBrush="DarkGray" 
+                                Background="White" 
+                                CornerRadius="6">
+
                             <StackPanel>
-                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding StartTime}" Margin="0,5,0,0"/>
-                                <TextBlock Text="{Binding Description}" Margin="0,5,0,0"/>
+                                <TextBlock Text="{Binding Name}" 
+                                           FontSize="16"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="{Binding StartTime}" 
+                                           Margin="0,5,0,0"/>
+
+                                <TextBlock Text="{Binding Description}" 
+                                           Margin="0,5,0,0"/>
 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Content="Subscribe" Click="SubscribeBtnSubmit" Tag="{Binding}"  Width="80"/>
-                                    <TextBlock Text="{Binding SubscriptionsCount}" VerticalAlignment="Center" Margin="6 0 0 0"/>
+                                    <Button Content="Subscribe" 
+                                            Click="SubscribeBtnSubmit" 
+                                            Tag="{Binding}"  
+                                            Width="80"/>
+
+                                    <TextBlock Text="{Binding SubscriptionsCount}" 
+                                               VerticalAlignment="Center" 
+                                               Margin="6 0 0 0"/>
                                 </StackPanel>
                             </StackPanel>
                         </Border>
@@ -63,8 +96,12 @@
 
         </ScrollViewer>
 
-        <Button Grid.Row="3" Content="Publish your event" Margin="0 10 0 0" Padding="10 0" Click="OpenEventAddForm"
-                HorizontalAlignment="Right" FontSize="16"/>
-
+        <Button Grid.Row="3" 
+                Content="Publish your event" 
+                Click="OpenEventAddForm"
+                HorizontalAlignment="Right" 
+                Margin="0 10 0 0" 
+                Padding="10 0" 
+                FontSize="16"/>
     </Grid>
 </Page>

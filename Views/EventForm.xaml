@@ -8,6 +8,7 @@
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="EventForm" Height="480" Width="560" Background="WhiteSmoke" ResizeMode="NoResize">
+
     <Window.Resources>
         <Style TargetType="Label">
             <Setter Property="Padding" Value="0 5 "/>
@@ -26,7 +27,6 @@
 
     <Border Padding="20">
 
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -39,29 +39,39 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock x:Name="TitleTBl" Text="Create an event" FontSize="20" FontWeight="Bold"
+            <TextBlock x:Name="TitleTBl"
+                       Text="Create an event"
+                       FontSize="20"
+                       FontWeight="Bold"
                        Grid.ColumnSpan="2"/>
 
-            <StackPanel Margin="0 0 15 0"
-                        Grid.Row="1">
+            <StackPanel Grid.Row="1"
+                        Margin="0 0 15 0">
 
                 <Label Content="Name"/>
-                <TextBox x:Name="NameTB" Text="{Binding Name}" MaxLength="60"/>
+                <TextBox x:Name="NameTB"
+                         Text="{Binding Name}"
+                         MaxLength="60"/>
 
                 <Label Content="Location"/>
-                <TextBox x:Name="LocationTB" Text="{Binding Location}" MaxLength="60"/>
+                <TextBox x:Name="LocationTB"
+                         Text="{Binding Location}"
+                         MaxLength="60"/>
 
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Margin="15 0 0 0"
-                        Grid.Column="1">
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="15 0 0 0">
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Starts" FontSize="16"/>
+                    <TextBlock Text="Starts"
+                               FontSize="16"/>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -71,10 +81,12 @@
 
                         <StackPanel Margin="0 0 8 0">
                             <Label Content="Date"/>
-                            <DatePicker x:Name="StartDateDP" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
+                            <DatePicker x:Name="StartDateDP"
+                                        DisplayDateStart="{x:Static sys:DateTime.Today}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1"  Margin="8 0 0 0">
+                        <StackPanel Grid.Column="1"
+                                    Margin="8 0 0 0">
                             <Label Content="Time"/>
                             <xctk:TimePicker x:Name="StartTimeTP"/>
                         </StackPanel>
@@ -87,7 +99,8 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Ends" FontSize="16"/>
+                    <TextBlock Text="Ends" 
+                               FontSize="16"/>
 
                     <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
@@ -97,10 +110,12 @@
 
                         <StackPanel Margin="0 0 8 0">
                             <Label Content="Date"/>
-                            <DatePicker x:Name="EndDateDP" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
+                            <DatePicker x:Name="EndDateDP"
+                                        DisplayDateStart="{x:Static sys:DateTime.Today}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1"  Margin="8 0 0 0">
+                        <StackPanel Grid.Column="1"
+                                    Margin="8 0 0 0">
                             <Label Content="Time"/>
                             <xctk:TimePicker x:Name="EndTimeTP"/>
                         </StackPanel>
@@ -110,24 +125,47 @@
                 </Grid>
             </StackPanel>
 
-            <Grid Margin="0 10 0 20"
-                  Grid.Row="2" Grid.ColumnSpan="2" >
+            <Grid Grid.Row="2"
+                  Grid.ColumnSpan="2"
+                  Margin="0 10 0 20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Label Content="Description"/>
-                <TextBox x:Name="DescriptionTB" Text="{Binding Description}" MaxLength="600" Grid.Row="1" Height="Auto"/>
+                <TextBox x:Name="DescriptionTB"
+                         Text="{Binding Description}"
+                         MaxLength="600"
+                         Grid.Row="1"
+                         Height="Auto"/>
             </Grid>
 
-            <DockPanel LastChildFill="False"
-                       Grid.Row="3" Grid.ColumnSpan="2">
+            <DockPanel Grid.Row="3"
+                       Grid.ColumnSpan="2"
+                       LastChildFill="False">
 
-                <Button x:Name="SubmitBtn" Content="Create an event" Width="118" Height="30" DockPanel.Dock="Right" Margin="20 0 0 0"/>
-                <Button x:Name="CancelBtn" Content="Cancel" Click="ExitWindow" Width="118" Height="30" DockPanel.Dock="Right"/>
-                <Button x:Name="DeleteBtn" Content="Delete Event" Width="75" Height="20" VerticalAlignment="Bottom" Foreground="Red" Visibility="Hidden"/>
+                <Button x:Name="SubmitBtn"
+                        Content="Create an event"
+                        Width="118"
+                        Height="30"
+                        DockPanel.Dock="Right"
+                        Margin="20 0 0 0"/>
 
+                <Button x:Name="CancelBtn"
+                        Content="Cancel"
+                        Click="ExitWindow"
+                        Width="118"
+                        Height="30"
+                        DockPanel.Dock="Right"/>
+
+                <Button x:Name="DeleteBtn"
+                        Content="Delete Event"
+                        Width="75"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Foreground="Red"
+                        Visibility="Hidden"/>
             </DockPanel>
 
         </Grid>

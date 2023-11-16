@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:EventManager"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1080">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -17,19 +18,35 @@
         </Grid.RowDefinitions>
 
         <!--Menubar-->
-        <Border Grid.Row="1" Background="Crimson" CornerRadius="0 60 0 0" Margin="0 0 0 0" Padding="20 0">
+        <Border Grid.Row="1"
+                Padding="20 0"
+                CornerRadius="0 60 0 0"
+                Background="Crimson">
+
             <DockPanel>
 
                 <!--Menu items-->
-                <TextBlock Text="Events App" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top"
-                           TextAlignment="Center" Margin="5 25 0 10"/>
-                <TextBlock Text="{Binding UserName}" Foreground="#FFD7E7" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top"
-                           TextAlignment="Center"/>
-                <Separator DockPanel.Dock="Top" Margin="0 20 0 0" Background="#99F5F5F5"/>
+                <TextBlock Text="Events App"
+                           DockPanel.Dock="Top"
+                           TextAlignment="Center"
+                           Margin="5 25 0 10"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="White"/>
+
+                <TextBlock Text="{Binding UserName}"
+                           DockPanel.Dock="Top"
+                           TextAlignment="Center"
+                           FontSize="14" 
+                           FontWeight="SemiBold"
+                           Foreground="#FFD7E7"/>
+
+                <Separator DockPanel.Dock="Top"
+                           Margin="0 20 0 0"
+                           Background="#99F5F5F5"/>
 
                 <Border Margin="0 20">
                     <DockPanel LastChildFill="False">
-
                         <DockPanel.Resources>
                             <Style TargetType="Button">
                                 <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -61,7 +78,12 @@
                                    Margin="0 20"
                                    Background="#99F5F5F5"/>
 
-                        <TextBlock Text="Admin menu" DockPanel.Dock="Top" Foreground="#FFD7E7" FontSize="14" FontWeight="SemiBold" Margin="15 0 0 0"/>
+                        <TextBlock Text="Admin menu"
+                                   DockPanel.Dock="Top"
+                                   Margin="15 0 0 0"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="#FFD7E7"/>
 
                         <StackPanel DockPanel.Dock="Top">
                             <Button Click="NavigateToManageEvents">
@@ -73,7 +95,9 @@
                             </Button>
                         </StackPanel>
 
-                        <Button Click="Logout" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                        <Button Click="Logout"
+                                DockPanel.Dock="Bottom"
+                                VerticalAlignment="Bottom">
                             <TextBlock Text="Logout"/>
                         </Button>
 
@@ -84,8 +108,12 @@
         </Border>
 
         <!--Main content-->
-        <Border Grid.Column="1" Grid.Row="1" Padding="50">
-            <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" Source="Pages/EventsFeed.xaml"/>
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                Padding="50">
+            <Frame x:Name="ContentFrame"
+                   NavigationUIVisibility="Hidden"
+                   Source="Pages/EventsFeed.xaml"/>
         </Border>
 
     </Grid>

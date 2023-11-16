@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventManager.Views"
         mc:Ignorable="d"
-      Title="UserForm" Height="550" Width="450">
+        Title="UserForm" Height="550" Width="450">
     <Window.Resources>
         <Style TargetType="Label">
-            <Setter Property="Padding" Value="0 5 "/>
+            <Setter Property="Padding" Value="0 5"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
         <Style TargetType="TextBox">
@@ -18,7 +18,8 @@
             <Setter Property="FontSize" Value="16"/>
         </Style>
     </Window.Resources>
-    <Border Grid.Row="2" Padding="20">
+
+    <Border Padding="20">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -26,48 +27,82 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock x:Name="TitleTBl" Text="Create a user" FontSize="20" Margin="0 0 0 10" FontWeight="Bold"/>
+            <TextBlock x:Name="TitleTBl"
+                       Text="Create a user"
+                       Margin="0 0 0 10"
+                       FontSize="20"
+                       FontWeight="Bold"/>
 
             <Separator Grid.Row="1"/>
 
             <StackPanel Grid.Row="2">
-
                 <Label Content="First Name"/>
-                <TextBox x:Name="FirstName" Text="{Binding FirstName}" MaxLength="40"/>
-                <Label Content="Last Name"/>
+                <TextBox x:Name="FirstName"
+                         Text="{Binding FirstName}"
+                         MaxLength="40"/>
 
-                <TextBox x:Name="LastName" Text="{Binding LastName}" MaxLength="40"/>
+                <Label Content="Last Name"/>
+                <TextBox x:Name="LastName"
+                         Text="{Binding LastName}"
+                         MaxLength="40"/>
 
                 <Label Content="Email"/>
-                <TextBox x:Name="Email" Text="{Binding EmailAddress}" MaxLength="50"/>
+                <TextBox x:Name="Email"
+                         Text="{Binding EmailAddress}"
+                         MaxLength="50"/>
 
                 <Label>
                     <TextBlock>
                         <Run Text="New password"/>
-                        <Run Text="(Optional)" FontStyle="Italic"/>
+                        <Run Text="(Optional)"
+                             FontStyle="Italic"/>
                     </TextBlock>
                 </Label>
-                <PasswordBox x:Name="Password" MaxLength="40"/>
+                <PasswordBox x:Name="Password"
+                             MaxLength="40"/>
 
                 <Label Content="Confirm new password"/>
-                <PasswordBox x:Name="ConfirmPassword" MaxLength="40"/>
+                <PasswordBox x:Name="ConfirmPassword"
+                             MaxLength="40"/>
 
                 <Label>
                     <TextBlock>
                           <Run Text="Phone number"/>
-                          <Run Text="(Optional)" FontStyle="Italic"/>
+                          <Run Text="(Optional)"
+                               FontStyle="Italic"/>
                     </TextBlock>
                 </Label>
-                <TextBox x:Name="PhoneNumber" Text="{Binding PhoneNumber}" MaxLength="16"/>
+                <TextBox x:Name="PhoneNumber"
+                         Text="{Binding PhoneNumber}" 
+                         MaxLength="16"/>
 
-                <DockPanel Margin="0 45 0 0" LastChildFill="False">
-                    <Button x:Name="SubmitBtn" Content="Create user" DockPanel.Dock="Right" Width="100" Height="30" Margin="20 0 0 0"/>
-                    <Button x:Name="CancelBtn" Content="Cancel" Click="ExitWindow" DockPanel.Dock="Right" Width="100" Height="30"/>
-                    <Button x:Name="DeleteBtn" Content="Delete user" Foreground="Red" Width="100" Height="20" Visibility="Hidden"/>
+                <DockPanel Margin="0 45 0 0"
+                           LastChildFill="False">
+
+                    <Button x:Name="SubmitBtn"
+                            Content="Create user" 
+                            DockPanel.Dock="Right"
+                            Width="100" Height="30"
+                            Margin="20 0 0 0"/>
+                    
+                    <Button x:Name="CancelBtn"
+                            Content="Cancel"
+                            Click="ExitWindow"
+                            DockPanel.Dock="Right"
+                            Width="100"
+                            Height="30"/>
+
+                    <Button x:Name="DeleteBtn"
+                            Content="Delete user"
+                            Width="100"
+                            Height="20"
+                            Foreground="Red"
+                            Visibility="Hidden"/>
                 </DockPanel>
 
             </StackPanel>
 
         </Grid>
+
     </Border>
 </Window>

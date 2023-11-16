@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:EventManager.Views.Auth"
         mc:Ignorable="d"
         Title="Log-in" Height="640" Width="480" ResizeMode="NoResize" Background="WhiteSmoke">
+
     <Grid>
         <Grid.Resources>
             <Style TargetType="Label">
@@ -33,11 +34,22 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Login" FontSize="32" HorizontalAlignment="Center" Margin="0, 20"/>
+        <TextBlock Text="Login" 
+                   HorizontalAlignment="Center" 
+                   Margin="0 20"
+                   FontSize="32"/>
+
         <Separator Grid.Row="1"/>
 
-        <Border Grid.Row="2" Padding="50, 0, 50, 50">
+        <Border Grid.Row="2" 
+                Padding="50 30 50 50">
+
             <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                </StackPanel.Resources>
 
                 <Label Content="Email"/>
                 <TextBox x:Name="EmailTB"/>
@@ -45,12 +57,15 @@
                 <Label Content="Password"/>
                 <PasswordBox x:Name="PasswordPB"/>
 
-                <TextBlock Margin="0 40 0 0" HorizontalAlignment="Center">
+                <TextBlock Margin="0 40 0 0"
+                           HorizontalAlignment="Center">
                     <Hyperlink Click="NavigateToRegistration">Dont have an account? Sign up</Hyperlink>
                 </TextBlock>
 
-                <Button x:Name="LoginBtn" Content="Login" Margin="0 45 0 0" Click="Submit"/>
-
+                <Button x:Name="LoginBtn"
+                        Content="Login"
+                        Click="Submit"
+                        Margin="0 45 0 0"/>
             </StackPanel>
         </Border>
 
